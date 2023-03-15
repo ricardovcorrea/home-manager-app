@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { BarCodeReader } from '../components';
 
 export const ReaderPage = () => {
@@ -8,7 +9,7 @@ export const ReaderPage = () => {
         <div className='reader-page__reader'>
           <BarCodeReader />
         </div>
-        <a href={`/`}>Home</a>
+        <Link to={'/'}>Home</Link>
       </div>
     </div>
   );

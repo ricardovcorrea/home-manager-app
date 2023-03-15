@@ -43,11 +43,20 @@ export const BarCodeReader = () => {
     );
 
     return () => {
-      if (readerRef.current === undefined) {
+      if (
+        readerRef.current === undefined ||
+        readerRef.current.isScanning === false
+      ) {
         return;
       }
 
-      readerRef.current.clear();
+      readerRef.current.stop().then(() => {
+        if (readerRef.current === undefined) {
+          return;
+        }
+
+        readerRef.current.clear();
+      });
     };
   }, [availableCameras]);
 

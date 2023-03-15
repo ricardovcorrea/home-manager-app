@@ -1,13 +1,15 @@
+import { Link } from 'react-router-dom';
+
 export const AppMenu = () => {
   return (
     <div className='menu'>
       <nav>
         <ul>
           <li>
-            <a href={`/`}>Home</a>
+            <Link to={'/'}>Home</Link>
           </li>
           <li>
-            <a href={`/reader/`}>Reader</a>
+            <Link to={'reader'}>Reader</Link>
           </li>
         </ul>
       </nav>
