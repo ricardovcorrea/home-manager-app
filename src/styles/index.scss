@@ -15,6 +15,10 @@ body {
   width: 100%;
 }
 
+a {
+  font-size: 1.4em;
+}
+
 @import './layout';
 @import './pages';
 @import './components';

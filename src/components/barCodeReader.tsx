@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Html5Qrcode } from 'html5-qrcode';
 
 interface ICameraDevice {
@@ -7,7 +7,13 @@ interface ICameraDevice {
 }
 interface IBarCodeReaderProps {
   onRead: (code: string) => void;
+  onError: (error: string) => void;
 }
+
+const LAST_USED_CAMERA_KEY = 'last-used-camera';
+const CAMERA_CONFIG = {
+  fps: 30,
+};
 
 export const BarCodeReader = (props: IBarCodeReaderProps) => {
   const readerRef = useRef<Html5Qrcode>();
@@ -19,13 +25,21 @@ export const BarCodeReader = (props: IBarCodeReaderProps) => {
       return;
     }
 
+    const lastUsedCamera = window.localStorage.getItem(LAST_USED_CAMERA_KEY);
+    if (lastUsedCamera !== null) {
+      setSelectedCamera(JSON.parse(lastUsedCamera));
+    }
+
     Html5Qrcode.getCameras().then((cameras) => {
       if (cameras === undefined || cameras.length === 0) {
         return;
       }
 
       setAvailableCameras(cameras);
-      setSelectedCamera(cameras[0]);
+
+      if (lastUsedCamera === null) {
+        setSelectedCamera(cameras[0]);
+      }
     });
   }, []);
 
@@ -34,17 +48,18 @@ export const BarCodeReader = (props: IBarCodeReaderProps) => {
       return;
     }
 
+    window.localStorage.setItem(
+      LAST_USED_CAMERA_KEY,
+      JSON.stringify(selectedCamera)
+    );
+
     readerRef.current = new Html5Qrcode('barcode-reader');
 
     readerRef.current.start(
       selectedCamera.id,
-      {
-        fps: 10,
-      },
-      (decodedText, decodedResult) => {
-        props.onRead(decodedText);
-      },
-      () => {}
+      CAMERA_CONFIG,
+      props.onRead,
+      props.onError
     );
 
     return () => {
@@ -63,26 +78,24 @@ export const BarCodeReader = (props: IBarCodeReaderProps) => {
         readerRef.current.clear();
       });
     };
-  }, [selectedCamera]);
+  }, [selectedCamera, props]);
 
   return (
     <div className={'barcode-reader'}>
-      <div id={'barcode-reader'} />
-      <div className={'barcode-reader__line'} />
-      <div className={'barcode-reader__camera-name'}>
-        {selectedCamera?.label}
-      </div>
       <select
         className={'barcode-reader__available-cameras'}
+        value={selectedCamera?.id}
         onChange={(e) => {
-          const aCam = availableCameras.find((ac) => ac.id === e.target.value);
+          const availableCamera = availableCameras.find(
+            (ac) => ac.id === e.target.value
+          );
 
-          if (aCam === null) {
+          if (availableCamera === null) {
             return;
           }
 
           readerRef.current = undefined;
-          setSelectedCamera(aCam);
+          setSelectedCamera(availableCamera);
         }}
       >
         {availableCameras.map((camera) => (
@@ -91,6 +104,8 @@ export const BarCodeReader = (props: IBarCodeReaderProps) => {
           </option>
         ))}
       </select>
+      <div id={'barcode-reader'} />
+      <div className={'barcode-reader__line'} />
     </div>
   );
 };

@@ -8,12 +8,15 @@ export const ReaderPage = () => {
   return (
     <div className={'reader-page'}>
       <div className={'reader-page__content'}>
-        <h1>Start scanning!</h1>
+        <Link className={'reader-page__content__home-link'} to={'/'}>
+          Home
+        </Link>
         <div className='reader-page__reader'>
           <BarCodeReader
             onRead={(code) => {
-              setReads([...reads, code]);
+              setReads((oldReads) => [...oldReads, code]);
             }}
+            onError={() => {}}
           />
         </div>
         <div>
@@ -21,7 +24,6 @@ export const ReaderPage = () => {
             <div key={i}>{r}</div>
           ))}
         </div>
-        <Link to={'/'}>Home</Link>
       </div>
     </div>
   );
