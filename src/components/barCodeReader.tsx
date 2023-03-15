@@ -11,8 +11,10 @@ interface IBarCodeReaderProps {
 }
 
 const LAST_USED_CAMERA_KEY = 'last-used-camera';
-const CAMERA_CONFIG = {
+const DEFAULT_CAMERA_CONFIG = {
   fps: 30,
+  qrbox: { width: 200, height: 100 },
+  aspectRatio: 1.3333,
 };
 
 export const BarCodeReader = (props: IBarCodeReaderProps) => {
@@ -57,7 +59,7 @@ export const BarCodeReader = (props: IBarCodeReaderProps) => {
 
     readerRef.current.start(
       selectedCamera.id,
-      CAMERA_CONFIG,
+      DEFAULT_CAMERA_CONFIG,
       props.onRead,
       props.onError
     );
@@ -105,7 +107,6 @@ export const BarCodeReader = (props: IBarCodeReaderProps) => {
         ))}
       </select>
       <div id={'barcode-reader'} />
-      <div className={'barcode-reader__line'} />
     </div>
   );
 };
