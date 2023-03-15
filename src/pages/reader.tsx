@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { BarCodeReader } from '../components';
 
 export const ReaderPage = () => {
-  const [reads, setReads] = useState<string[]>([]);
+  const [lastRead, setLastRead] = useState<string>('');
 
   const handleOnRead = useCallback((code: string) => {
-    setReads((oldReads) => [...oldReads, code]);
+    setLastRead(code);
   }, []);
 
   return (
@@ -18,11 +18,7 @@ export const ReaderPage = () => {
         <div className='reader-page__reader'>
           <BarCodeReader onRead={handleOnRead} onError={() => {}} />
         </div>
-        <div>
-          {reads.map((r, i) => (
-            <div key={i}>{r}</div>
-          ))}
-        </div>
+        <div className={'reader-page__last-read'}>{lastRead}</div>
       </div>
     </div>
   );

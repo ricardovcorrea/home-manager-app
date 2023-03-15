@@ -5,8 +5,6 @@
   padding-top: 2em;
   justify-content: center;
 
- 
-
   &__content {
     position: relative;
 
@@ -32,5 +30,9 @@
     flex: 1;
     width: 100%;
     padding-top: 3em;
+  }
+
+  &__last-read {
+    font-size: 2em;
   }
 }
