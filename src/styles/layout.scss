@@ -1,0 +1,43 @@
+.app-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+
+  &__content {
+    border-top: 1px solid black;
+    height: 100%;
+    overflow-y: auto;
+    padding: 0.8em;
+  }
+
+  &__side-menu {
+    width: 25em;
+    overflow-y: hidden;
+    border-right: 1px solid black;
+
+    &__header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  &__main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+
+    &__header {
+      display: flex;
+      align-items: center;
+      padding: 0 0.8em;
+    }
+  }
+}
