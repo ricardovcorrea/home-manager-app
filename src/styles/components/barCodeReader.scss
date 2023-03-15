@@ -1,0 +1,28 @@
+.barcode-reader {
+  position: relative;
+
+  &__line {
+    position: absolute;
+    height: 2px;
+    background-color: red;
+    width: 100%;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+    z-index: 2;
+    opacity: 0.3;
+  }
+
+  &__camera-name {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: red;
+  }
+
+  &__available-cameras {
+    margin-top: 1em;
+    width: 100%;
+  }
+}
