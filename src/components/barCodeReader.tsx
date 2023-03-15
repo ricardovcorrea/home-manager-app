@@ -81,6 +81,7 @@ export const BarCodeReader = (props: IBarCodeReaderProps) => {
             return;
           }
 
+          readerRef.current = undefined;
           setSelectedCamera(aCam);
         }}
       >
