@@ -38,7 +38,7 @@ export const BarCodeReader = () => {
         console.log(decodedResult);
       },
       (errorMessage) => {
-        // parse error, ignore it.
+        // ignore errors
       }
     );
 
