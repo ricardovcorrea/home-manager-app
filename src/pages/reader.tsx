@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BarCodeReader } from '../components';
 
 export const ReaderPage = () => {
   const [reads, setReads] = useState<string[]>([]);
+
+  const handleOnRead = useCallback((code: string) => {
+    setReads((oldReads) => [...oldReads, code]);
+  }, []);
 
   return (
     <div className={'reader-page'}>
@@ -12,12 +16,7 @@ export const ReaderPage = () => {
           Home
         </Link>
         <div className='reader-page__reader'>
-          <BarCodeReader
-            onRead={(code) => {
-              setReads((oldReads) => [...oldReads, code]);
-            }}
-            onError={() => {}}
-          />
+          <BarCodeReader onRead={handleOnRead} onError={() => {}} />
         </div>
         <div>
           {reads.map((r, i) => (

@@ -78,7 +78,7 @@ export const BarCodeReader = (props: IBarCodeReaderProps) => {
         readerRef.current.clear();
       });
     };
-  }, [selectedCamera, props]);
+  }, [selectedCamera, props.onRead]);
 
   return (
     <div className={'barcode-reader'}>
