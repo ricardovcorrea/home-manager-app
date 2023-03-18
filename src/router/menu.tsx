@@ -11,7 +11,7 @@ export const AppMenu = () => {
           <Link to={"products"}>Products</Link>
         </li>
         <li>
-          <Link to={"reader"} target={"_blank"}>Reader</Link>
+          <Link to={"reader"}>Reader</Link>
         </li>
       </ul>
     </div>

@@ -1,5 +1,10 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import { HomePage, ProductsPage, ReaderPage } from "../pages";
+import {
+  CreateProductPage,
+  HomePage,
+  ProductsList,
+  ReaderPage
+} from "../pages";
 import { AppLayout } from "./layout";
 
 export const Router = createBrowserRouter(
@@ -12,8 +17,12 @@ export const Router = createBrowserRouter(
           element: <HomePage />,
         },
         {
-          path: "/products",
-          element: <ProductsPage />,
+          path: "products",
+          element: <ProductsList />,
+        },
+        {
+          path: "products/create",
+          element: <CreateProductPage />,
         },
         {
           path: "/*",

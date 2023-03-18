@@ -1,6 +1,10 @@
 import { Button, Table } from "react-bootstrap";
+import { FiRefreshCcw } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
-export const ProductsPage = () => {
+export const ProductsList = () => {
+  const navigate = useNavigate();
+
   return (
     <div className={"page products-page"}>
       <div className='page__header'>
@@ -8,7 +12,17 @@ export const ProductsPage = () => {
           <h1>Products</h1>
         </div>
         <div className='page__actions'>
-          <Button variant='success'>Create new product</Button>
+          <Button variant='secondary'>
+            <FiRefreshCcw />
+          </Button>
+          <Button
+            variant='success'
+            onClick={() => {
+              navigate("/products/create");
+            }}
+          >
+            Create new product
+          </Button>
         </div>
       </div>
       <div className='page__body'>
