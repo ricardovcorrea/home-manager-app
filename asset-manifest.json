@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/home-manager-app/static/css/main.1c8f6d21.css",
+    "main.js": "/home-manager-app/static/js/main.c4eedebb.js",
+    "index.html": "/home-manager-app/index.html",
+    "main.1c8f6d21.css.map": "/home-manager-app/static/css/main.1c8f6d21.css.map",
+    "main.c4eedebb.js.map": "/home-manager-app/static/js/main.c4eedebb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1c8f6d21.css",
+    "static/js/main.c4eedebb.js"
+  ]
+}
