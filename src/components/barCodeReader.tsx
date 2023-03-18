@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import { Html5Qrcode } from 'html5-qrcode';
+import { Html5Qrcode } from "html5-qrcode";
+import { useEffect, useRef, useState } from "react";
 
 interface ICameraDevice {
   id: string;
@@ -10,7 +10,7 @@ interface IBarCodeReaderProps {
   onError: (error: string) => void;
 }
 
-const LAST_USED_CAMERA_KEY = 'last-used-camera';
+const LAST_USED_CAMERA_KEY = "last-used-camera";
 const DEFAULT_CAMERA_CONFIG = {
   fps: 30,
   qrbox: { width: 200, height: 100 },
@@ -55,7 +55,7 @@ export const BarCodeReader = (props: IBarCodeReaderProps) => {
       JSON.stringify(selectedCamera)
     );
 
-    readerRef.current = new Html5Qrcode('barcode-reader');
+    readerRef.current = new Html5Qrcode("barcode-reader");
 
     readerRef.current.start(
       selectedCamera.id,
@@ -83,9 +83,9 @@ export const BarCodeReader = (props: IBarCodeReaderProps) => {
   }, [selectedCamera, props.onRead]);
 
   return (
-    <div className={'barcode-reader'}>
+    <div className={"barcode-reader"}>
       <select
-        className={'barcode-reader__available-cameras'}
+        className={"barcode-reader__available-cameras"}
         value={selectedCamera?.id}
         onChange={(e) => {
           const availableCamera = availableCameras.find(
@@ -106,7 +106,12 @@ export const BarCodeReader = (props: IBarCodeReaderProps) => {
           </option>
         ))}
       </select>
-      <div id={'barcode-reader'} />
+      <div
+        id={"barcode-reader"}
+        onClick={() => {
+          props.onRead("3124124");
+        }}
+      />
     </div>
   );
 };

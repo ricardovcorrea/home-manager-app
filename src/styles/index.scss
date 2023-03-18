@@ -13,15 +13,9 @@ body {
 
   height: 100%;
   width: 100%;
-  
-  color: white;
 }
 
-a {
-  font-size: 1.4em;
-  color: white;
-}
-
-@import './layout';
-@import './pages';
-@import './components';
+@import "./bootstrap";
+@import "./layout";
+@import "./pages";
+@import "./components";
